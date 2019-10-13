@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="签到打卡.css"/>
+	</head>
+	<body>
+		
+		
+		<div id="box">
+			
+			<div class="head">
+				<p>已经连续签到<span class="continuity">0</span>天</p>
+				<p>累计签到<span class="count">0</span>天</p>
+			</div>
+			
+			<hr>
+			
+			<div class="content">
+				<ul>
+					<li>1<img src="img/4.jpg" alt=""></li>
+					<li>2<img src="img/4.jpg" alt=""></li>
+					<li>3<img src="img/4.jpg" alt=""></li>
+					<li>4<img src="img/4.jpg" alt=""></li>
+					<li>5<img src="img/4.jpg" alt=""></li>
+					<li>6<img src="img/4.jpg" alt=""></li>
+					<li><img src="img/5.jpg" ></li>
+				</ul>
+				
+				<ul class="activ">
+					<p>------------------------</p>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				
+				<ul>
+					<li>1天</li>
+					<li>2天</li>
+					<li>3天</li>
+					<li>4天</li>
+					<li>5天</li>
+					<li>6天</li>
+					<li>7天</li>
+				</ul>
+				
+			</div>
+			
+			<button>签到</button>
+			
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript">
+			
+			window.onload = function(){
+				
+				var li = document.querySelectorAll('.activ>li');
+				
+				//记录打卡时间
+				var time = [];
+				
+				//签到激活下标
+				var num = 0;
+				
+				//签到按钮
+				document.getElementsByTagName('button')[0].onclick = function(){
+					
+					var t = new Date();
+					
+					//每打一次卡,用数组记录打卡时间
+					time.push(t.getDate());
+					
+					if(time.length >= 2){
+						//如果今天打卡是一号,用今天的时间加上上次的时间
+						//例:上次打卡时间是30号,本次是1号,30+1-30>1 ? "打卡中断" : "打卡没中断"
+						if(time[time.length-1] == 1){
+							time[time.length-1] = time[time.length-2] + 1;
+						}
+						
+						//如果打卡时间间隔大于1天,连续打卡时间中断
+						if(time[time.length-1] - time[time.length-2] > 1){
+							
+							//连续打卡时间中断,连续时间重置
+							document.getElementsByClassName('continuity')[0].textContent = 0;
+							
+							//打卡时间中断后,跳过这个时间
+							num += time[time.length-1] - time[time.length-2];
+							//一星期一个周期
+							if(num >= 7){
+								num = num % 7;
+								for(var i = 0; i < li.length; i++){
+									li[i].style.backgroundImage = "";
+								}
+							}
+							
+							// time = [];
+						}
+					}
+					
+					
+					
+					//打卡一个星期后从新开始,归0
+					if(num > 6){
+						for(var i = 0; i < li.length; i++){
+							li[i].style.backgroundImage = "";
+						}
+						num = 0;
+					}
+					
+					li[num].style.backgroundImage = "URL(img/3.jpg)";
+					//每点击一次,设置背景,下标加一
+					num++;
+					
+					
+					
+					//连续签到
+					document.getElementsByClassName('continuity')[0].textContent++;
+					
+					//累计签到
+					document.getElementsByClassName('count')[0].textContent++;
+					
+					//点击后禁用按钮
+					document.getElementsByTagName('button')[0].setAttribute('disabled',true);
+					
+				}
+				
+				
+				
+				//每秒执行一次,次天凌晨0点才能再次打卡
+				setInterval(function(){
+					if(new Date().getHours() == '0' || new Date().getHours() == '00'){
+						//启用按钮
+						document.getElementsByTagName('button')[0].removeAttribute('disabled');
+					}
+				},1000);
+				
+				
+				
+			}
+			
+		</script>
+		
+	</body>
+</html>
